@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "아점 맛있게먹기",
+    "checked": true
+    
+  },
+  {
+    "id": 2,
+    "title": "저녁 맛있게먹기",
+    "checked": false
+  },
+  {
+    "id": 3,
+    "title": "투두 리스트만들기",
+    "checked": true
+  }
+]
