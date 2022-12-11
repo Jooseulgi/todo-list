@@ -4,6 +4,7 @@ import styles from "../todoList.module.scss";
 import TodoForm from "../TodoForm/TodoForm";
 import TodoItem from "../TodoItem/TodoItem";
 import { UpdateTextProvider } from "../../../context/UpdateTextProvider";
+import Title from "../../Common/Title/Title";
 
 const TodoLayout = () => {
     const [data, setData] = useState(dummy);
@@ -29,7 +30,7 @@ const TodoLayout = () => {
     return (
         <UpdateTextProvider>
             <div className={styles.todoList}>
-                <h1 className={styles.headText}>TODO's TASKS ({resultNum})</h1>
+                <Title>TODO's TASKS ({resultNum})</Title>
                 <ul className={styles.list}>
                     {data.map((item) => (
                         <TodoItem

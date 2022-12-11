@@ -1,0 +1,12 @@
+@import '../../../styles/constants/colors';
+
+.title{
+    font-size: 12px;
+    color: $GRAY4;
+    letter-spacing: 2px;
+    font-weight: 400;
+
+    &.largeTitle{
+        font-size: 18px;
+    }
+}

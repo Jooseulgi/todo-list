@@ -5,6 +5,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { TfiPencil } from "react-icons/tfi";
 import { MdOutlineCancel } from "react-icons/md";
 import { UpdateTextContext } from "../../../context/UpdateTextProvider";
+import Button from "../../Common/Button/Button";
 
 const TodoItem = ({ item, onChcked, onDelete }) => {
     const { update, onUpdateState, id } = useContext(UpdateTextContext);
@@ -25,25 +26,24 @@ const TodoItem = ({ item, onChcked, onDelete }) => {
                 />
             </div>
             <div className={styles.btnBox}>
-                <button
-                    type="button"
+                <Button
+                    type="icon"
                     onClick={() => {
                         onUpdateState(item.id);
                     }}
-                >
-                    {update && item.id === id ? (
-                        <MdOutlineCancel className={styles.cancelBtn} />
-                    ) : (
-                        <TfiPencil className={styles.updateBtn} />
-                    )}
-                </button>
-                <button
-                    className={styles.deleteBtn}
-                    type="button"
+                    text={
+                        update && item.id === id ? (
+                            <MdOutlineCancel className={styles.cancelBtn} />
+                        ) : (
+                            <TfiPencil className={styles.updateBtn} />
+                        )
+                    }
+                />
+                <Button
+                    type="icon"
                     onClick={() => onDelete(item.id)}
-                >
-                    <RiDeleteBinLine />
-                </button>
+                    text={<RiDeleteBinLine />}
+                />
             </div>
         </li>
     );

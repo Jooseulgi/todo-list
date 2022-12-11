@@ -1,0 +1,56 @@
+@import '../../../styles/constants/colors';
+
+.button {
+    display: flex;
+    align-items: center;
+
+    & + button{
+        margin-left: 5px;
+    }
+
+    &.round{
+        padding: 10px;
+        height: 100%;
+        border-radius: 10px;
+        background: $PRIMERY;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        color: $WHITE;
+        box-shadow: 1px 1px 3px 0px #235198;
+    }
+
+    &.roundLg{
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background: $PRIMERY;
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        color: $WHITE;
+        box-shadow: 1px 1px 3px 0px #235198;
+    }
+
+    &.icon{
+        opacity: 0.3;
+        flex: none;
+        transition: 0.2s;
+        font-size: 20px;
+        &:hover {
+            transform: rotate(15deg);
+        }
+    }
+
+    &.tab{
+        justify-content: center;
+        padding: 10px;
+        width: 50%;
+        height: 100%;
+        border-radius: 10px;
+        background: $WHITE;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: $GRAY3;
+    }
+  }

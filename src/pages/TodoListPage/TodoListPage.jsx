@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TodoLayout from "../components/TodoList/TodoLayout/TodoLayout";
+import TodoLayout from "../../components/TodoList/TodoLayout/TodoLayout";
 
 const TodoListPage = () => {
     // const [todos, setTodos] = useState([]);
     // const [selectedTodo, setSelectedTodo] = useState(null);
     // const [insertToggle, setInsertToggle] = useState(false);
 
-    // const [user] = useState(false);
+    const [user] = useState(false);
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (localStorage.getItem("access_token")) {
-    //         navigate("/todo");
-    //     } else {
-    //         navigate("/");
-    //     }
-    // }, [user]);
+    useEffect(() => {
+        if (localStorage.getItem("access_token")) {
+            navigate("/todo");
+        } else {
+            navigate("/");
+        }
+    }, [user]);
 
     // const getTodo = () => {
     //     fetch("https://pre-onboarding-selection-task.shop/todos", {

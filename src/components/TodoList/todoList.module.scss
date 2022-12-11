@@ -1,12 +1,6 @@
 @import "../../styles/constants/_colors.scss";
 
 .todoList {
-  .headText {
-    font-size: 12px;
-    color: #839fee;
-    letter-spacing: 2px;
-    font-weight: 400;
-  }
   .list {
     height: calc(100% - 70px);
     overflow: auto;
@@ -45,34 +39,9 @@
           }
         }
       }
-      .title {
-        margin-left: 15px;
-      }
       .btnBox {
-        flex: none;
-        opacity: 0.3;
+        display: flex;
         margin-left: auto;
-        font-size: 20px;
-        .cancelBtn {
-          transition: 0.2s;
-          &:hover {
-            transform: rotate(15deg);
-          }
-        }
-        .updateBtn {
-          transition: 0.2s;
-          transform: rotate(-15deg);
-          &:hover {
-            transform: rotate(0);
-          }
-        }
-        .deleteBtn {
-          margin-left: 5px;
-          transition: 0.2s;
-          &:hover {
-            transform: rotate(15deg);
-          }
-        }
       }
     }
   }
@@ -99,18 +68,6 @@
     }
     .createBtn {
       margin-left: auto;
-      button {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        height: 100%;
-        border-radius: 10px;
-        background: $PRIMERY;
-        font-size: 12px;
-        letter-spacing: 0.4px;
-        color: $WHITE;
-        box-shadow: 1px 1px 3px 0px #235198;
-      }
     }
   }
 }

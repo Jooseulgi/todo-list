@@ -4,32 +4,3 @@
 @import 'constants/colors';
 
 
-.App {
-    background: $BG;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    >div{
-        position: relative;
-        padding: 40px;
-        margin: 50px;
-        width: 500px;
-        min-width: 400px;
-        height: 75vh;
-        border-radius: 20px;
-        background: $TODOBG;
-        box-shadow: 5px 4px 3px 3px #d7dcf8;
-    }
-}
-
-.hidden{
-    position: absolute;
-    top: -999px;
-    left: -999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    font-size: 1px;
-    line-height: 0;
-}

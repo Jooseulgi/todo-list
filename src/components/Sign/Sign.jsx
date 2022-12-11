@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { defaultInstance } from "../../data/client";
+import Button from "../Common/Button/Button";
+import Title from "../Common/Title/Title";
 import styles from "./sign.module.scss";
 
 const Sign = ({ title, type }) => {
@@ -11,17 +14,10 @@ const Sign = ({ title, type }) => {
     const [user, setUser] = useState(false);
 
     const navigate = useNavigate();
-    useEffect(() => {
-        if (localStorage.getItem("access_token")) {
-            navigate("/todo");
-        } else {
-            navigate("/");
-        }
-    }, [user]);
 
-    const handleEmail = (e) => {
+    const onEmailHandler = (e) => {
         const { value } = e.target;
-        const regex = /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$/;
+        const regex = /[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+/;
         if (regex.test(value)) {
             setEmailValid(true);
         }
@@ -31,7 +27,7 @@ const Sign = ({ title, type }) => {
         setEmail(value);
     };
 
-    const handlePassword = (e) => {
+    const onPwHandler = (e) => {
         const { value } = e.target;
         const regex = /(?=.*[a-zA-Z0-9])\w{8,}/i;
         if (regex.test(value)) {
@@ -43,40 +39,46 @@ const Sign = ({ title, type }) => {
         setPw(value);
     };
 
-    const onClickConfirmButton = () => {
-        fetch("https://pre-onboarding-selection-task.shop/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                password: pw,
-            }),
-        })
-            .then((response) => response.json())
+    const onConfirm = () => {
+        defaultInstance
+            .post(
+                "/auth/signup",
+                {
+                    email: email,
+                    password: pw,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             .then((result) => {
-                if (result.access_token !== undefined) {
+                if (result.data.access_token !== undefined) {
+                    console.log(email, pw);
                     localStorage.setItem("access_token", result.access_token);
                     setUser(true);
+                    alert("회원가입에 성공했습니다.");
                     navigate("/todo");
                 }
             })
             .catch((error) => console.log("error", error));
     };
 
-    const onClickLoginButton = () => {
-        fetch("https://pre-onboarding-selection-task.shop/auth/signin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                password: pw,
-            }),
-        })
-            .then((response) => response.json())
+    const onLogin = () => {
+        defaultInstance
+            .post(
+                "/auth/signin",
+                {
+                    email: email,
+                    password: pw,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             .then((result) => {
                 if (result.access_token !== undefined) {
                     localStorage.setItem("access_token", result.access_token);
@@ -94,9 +96,14 @@ const Sign = ({ title, type }) => {
         setNotAllow(true);
     }, [emailValid, pwValid]);
 
+    useEffect(() => {
+        setEmail("");
+        setPw("");
+    }, [type]);
+
     return (
         <div className={styles.sign}>
-            <h1>{title}</h1>
+            <Title largeTitle>{title}</Title>
             <div className={styles.form}>
                 <div className={styles.inputBox}>
                     <label>이메일 주소</label>
@@ -104,14 +111,14 @@ const Sign = ({ title, type }) => {
                         type="text"
                         placeholder="@포함 입력해주세요."
                         value={email}
-                        onChange={handleEmail}
+                        onChange={onEmailHandler}
                     />
                 </div>
-                <p className={styles.errorMsg}>
+                <div className={styles.errorMsg}>
                     {!emailValid && email.length > 0 && (
                         <p>올바른 이메일을 입력해주세요.</p>
                     )}
-                </p>
+                </div>
             </div>
             <div className={styles.form}>
                 <div className={styles.inputBox}>
@@ -120,32 +127,33 @@ const Sign = ({ title, type }) => {
                         placeholder="8자이상 입력해주세요."
                         type="password"
                         value={pw}
-                        onChange={handlePassword}
+                        onChange={onPwHandler}
                     />
                 </div>
-                <p className={styles.errorMsg}>
+                <div className={styles.errorMsg}>
                     {!pwValid && pw.length > 0 && (
                         <p> 8자 이상 입력해주세요.</p>
                     )}
-                </p>
+                </div>
             </div>
-            <div>
+            <div className={styles.button}>
+                <div className={styles.errorMsg}>
+                    <p>올바른 이메일을 입력해주세요.</p>
+                </div>
                 {type === "signup" ? (
-                    <button
-                        onClick={onClickConfirmButton}
+                    <Button
+                        type="roundLg"
+                        onClick={onConfirm}
                         disabled={notAllow}
-                        type="button"
-                    >
-                        회원가입
-                    </button>
+                        text={"회원가입"}
+                    />
                 ) : (
-                    <button
-                        onClick={onClickLoginButton}
+                    <Button
+                        type="roundLg"
+                        onClick={onLogin}
                         disabled={notAllow}
-                        type="button"
-                    >
-                        로그인
-                    </button>
+                        text={"로그인"}
+                    />
                 )}
             </div>
         </div>

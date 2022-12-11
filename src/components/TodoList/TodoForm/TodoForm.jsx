@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MdSecurityUpdate } from "react-icons/md";
 import { UpdateTextContext } from "../../../context/UpdateTextProvider";
+import Button from "../../Common/Button/Button";
 import styles from "../todoList.module.scss";
 
 const TodoForm = ({ onCreateData, onUpdateText }) => {
@@ -40,7 +41,7 @@ const TodoForm = ({ onCreateData, onUpdateText }) => {
                 />
             </div>
             <div className={styles.createBtn} onClick={onSubmit}>
-                <button type="button">{update ? "Update" : "New Task"}</button>
+                <Button type="round" text={update ? "Update" : "New Task"} />
             </div>
         </form>
     );
