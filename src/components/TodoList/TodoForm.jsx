@@ -1,30 +1,23 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { MdSecurityUpdate } from "react-icons/md";
-import { UpdateTextContext } from "../../../context/UpdateTextProvider";
-import Button from "../../Common/Button/Button";
-import styles from "../todoList.module.scss";
+import React, { useContext } from "react";
+import { UpdateTextContext } from "../../context/UpdateTextProvider";
+import Button from "../Common/Button/Button";
+import styles from "./todoList.module.scss";
 
-const TodoForm = ({ onCreateData, onUpdateText }) => {
-    const { update, id } = useContext(UpdateTextContext);
-    const [title, setTitle] = useState("");
-    const nextId = useRef(4);
-    const dataContent = {
-        id: nextId.current,
-        title,
-        checked: false,
-    };
-    const onChangeHandler = (e) => {
-        setTitle(e.target.value);
-    };
-    const onCreate = () => {
-        if (title.trim().length === 0) return;
-        onCreateData(dataContent);
-        nextId.current += 1;
-    };
+const TodoForm = ({
+    todos,
+    onCreate,
+    onUpdateText,
+    title,
+    setTitle,
+    onChangeHandler,
+}) => {
+    const { update, setUpdate, id } = useContext(UpdateTextContext);
     const onSubmit = (e) => {
         e.preventDefault();
         update ? onUpdateText(id, title) : onCreate();
+        console.log(todos);
         setTitle("");
+        setUpdate(false);
     };
     return (
         <form className={styles.formBox} onSubmit={onSubmit}>

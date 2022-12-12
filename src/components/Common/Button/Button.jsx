@@ -1,9 +1,6 @@
 import { memo } from "react";
-// import { useNavigate } from "react-router-dom";
 import cx from "classnames";
-
 import styles from "./button.module.scss";
-import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 
 const Button = memo(
     ({
@@ -16,7 +13,6 @@ const Button = memo(
         icon = false,
         tab = false,
     }) => {
-        // const navigate = useNavigate();
         return (
             <button
                 type={submit ? "submit" : "button"}

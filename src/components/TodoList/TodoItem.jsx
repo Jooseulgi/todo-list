@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import styles from "../todoList.module.scss";
+import React, { useContext } from "react";
+import styles from "./todoList.module.scss";
 import cx from "classnames";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TfiPencil } from "react-icons/tfi";
 import { MdOutlineCancel } from "react-icons/md";
-import { UpdateTextContext } from "../../../context/UpdateTextProvider";
-import Button from "../../Common/Button/Button";
+import { UpdateTextContext } from "../../context/UpdateTextProvider";
+import Button from "../Common/Button/Button";
 
 const TodoItem = ({ item, onChcked, onDelete }) => {
     const { update, onUpdateState, id } = useContext(UpdateTextContext);
@@ -13,16 +13,21 @@ const TodoItem = ({ item, onChcked, onDelete }) => {
         <li>
             <div className={styles.checkbox}>
                 <label
-                    className={cx({ [styles.checkText]: item.checked })}
+                    className={cx({
+                        [styles.checkText]: item.isCompleted,
+                    })}
                     htmlFor="checkbox"
-                    onClick={() => onChcked(item.id)}
+                    onClick={() => {
+                        onChcked(item.id, item.todo, !item.isCompleted);
+                        console.log(item);
+                    }}
                 >
-                    {item.title}
+                    {item.todo}
                 </label>
                 <input
                     type="checkbox"
                     id="checkbox"
-                    defaultChecked={item.checked}
+                    defaultChecked={item.isCompleted}
                 />
             </div>
             <div className={styles.btnBox}>

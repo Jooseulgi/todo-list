@@ -1,6 +1,9 @@
 @import "../../styles/constants/_colors.scss";
 
 .signPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .tab{
         display: flex;
     }
