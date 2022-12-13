@@ -29,6 +29,7 @@ const Sign = ({ title, type }) => {
     useEffect(() => {
         setNotAllow(true);
         onTypeChange();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type]);
 
     return (
