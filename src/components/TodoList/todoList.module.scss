@@ -1,8 +1,15 @@
 @import "../../styles/constants/_colors.scss";
 
 .todoList {
+  height:100%;
+  .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
   .list {
-    height: calc(100% - 70px);
+    height: calc(100% - 95px);
     overflow: auto;
     li {
       display: flex;

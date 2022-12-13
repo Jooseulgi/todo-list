@@ -15,7 +15,7 @@ export const UpdateTextProvider = ({ children }) => {
     };
     return (
         <UpdateTextContext.Provider
-            value={{ onUpdateState, update, setUpdate, id }}
+            value={{ onUpdateState, update, setUpdate, id, setId }}
         >
             {children}
         </UpdateTextContext.Provider>

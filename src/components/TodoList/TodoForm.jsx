@@ -1,23 +1,24 @@
 import React, { useContext } from "react";
+import styles from "./todoList.module.scss";
 import { UpdateTextContext } from "../../context/UpdateTextProvider";
 import Button from "../Common/Button/Button";
-import styles from "./todoList.module.scss";
 
 const TodoForm = ({
     todos,
     onCreate,
-    onUpdateText,
+    onUpdate,
     title,
     setTitle,
     onChangeHandler,
 }) => {
-    const { update, setUpdate, id } = useContext(UpdateTextContext);
+    const { update, id, setUpdate, setId } = useContext(UpdateTextContext);
     const onSubmit = (e) => {
         e.preventDefault();
-        update ? onUpdateText(id, title) : onCreate();
+        update ? onUpdate(id, title) : onCreate();
         console.log(todos);
         setTitle("");
         setUpdate(false);
+        setId(undefined);
     };
     return (
         <form className={styles.formBox} onSubmit={onSubmit}>

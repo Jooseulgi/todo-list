@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./todoList.module.scss";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 import { UpdateTextProvider } from "../../context/UpdateTextProvider";
 import Title from "../Common/Title/Title";
-import useTodo from "../../data/useTodo";
+import useTodo from "../../hooks/useTodo";
+import Button from "../Common/Button/Button";
 
 const TodoLayout = () => {
+    const navigate = useNavigate();
     const {
         todos,
         getTodo,
         onDelete,
-        onChcked,
         onCreate,
-        onUpdateText,
+        onUpdate,
         title,
         setTitle,
         onChangeHandler,
@@ -22,19 +24,29 @@ const TodoLayout = () => {
 
     useEffect(() => {
         getTodo();
-    }, []);
+    }, [getTodo]);
 
     return (
         <UpdateTextProvider>
             <div className={styles.todoList}>
-                <Title>TODO's TASKS ({resultNum})</Title>
+                <div className={styles.title}>
+                    <Title>TODO's TASKS ({resultNum})</Title>
+                    <Button
+                        type="round"
+                        text={"LOGOUT"}
+                        onClick={() => {
+                            localStorage.removeItem("access_token");
+                            navigate("/");
+                        }}
+                    />
+                </div>
                 {todos.length ? (
                     <ul className={styles.list}>
                         {todos.map((item) => (
                             <TodoItem
                                 key={item.id}
                                 item={item}
-                                onChcked={onChcked}
+                                onUpdate={onUpdate}
                                 onDelete={onDelete}
                             />
                         ))}
@@ -47,7 +59,7 @@ const TodoLayout = () => {
                     title={title}
                     setTitle={setTitle}
                     onCreate={onCreate}
-                    onUpdateText={onUpdateText}
+                    onUpdate={onUpdate}
                     onChangeHandler={onChangeHandler}
                 />
             </div>

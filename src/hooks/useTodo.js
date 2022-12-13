@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { authInstance } from "./useAuth";
 
 const useTodo = () => {
-    //const [user, setUser] = useState(false);
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState("");
 
@@ -13,13 +11,14 @@ const useTodo = () => {
     };
 
     const getTodo = () => {
-        authInstance("/todos")
+        authInstance
+            .get("/todos")
             .then((res) => {
                 setTodos(res.data);
             })
             .catch((error) => {
                 if (error instanceof AxiosError) {
-                    alert(error.response?.data.message);
+                    alert("접근 권한이 없습니다.");
                     console.log(error);
                 }
             });
@@ -55,22 +54,26 @@ const useTodo = () => {
             });
     };
 
-    function getDefaultIsCompleted(id) {
+    const getDefaultIsCompleted = (id) => {
+        let isCompleted = false;
         todos.forEach((item) => {
             if (item.id === id) {
-                return item.isCompleted;
+                isCompleted = item.isCompleted;
             }
         });
-    }
+        return isCompleted;
+    };
 
-    const onUpdateText = (
+    const onUpdate = (
         id,
         editTitle,
         isCompleted = getDefaultIsCompleted(id)
     ) => {
+        console.log(id, isCompleted);
         authInstance
-            .put(`/todos/${id}`, { todo: editTitle, isCompleted: isCompleted })
+            .put(`/todos/${id}`, { todo: editTitle, isCompleted })
             .then((res) => {
+                console.log(isCompleted);
                 setTodos(
                     todos.map((item) =>
                         item.id === res.data.id ? res.data : item
@@ -85,17 +88,6 @@ const useTodo = () => {
             });
     };
 
-    const onChcked = (id, title, isCompleted) => {
-        setTodos(
-            todos.map((item) =>
-                item.id === id
-                    ? { ...item, isCompleted: !item.isCompleted }
-                    : item
-            )
-        );
-        onUpdateText(id, title, isCompleted);
-    };
-
     const resultNum = todos.filter((item) => !item.isCompleted).length;
 
     return {
@@ -105,9 +97,8 @@ const useTodo = () => {
         getTodo,
         onCreate,
         onDelete,
-        onChcked,
         onChangeHandler,
-        onUpdateText,
+        onUpdate,
         resultNum,
     };
 };

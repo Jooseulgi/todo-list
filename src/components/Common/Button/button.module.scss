@@ -53,4 +53,9 @@
         letter-spacing: 1px;
         color: $GRAY3;
     }
+
+    &:disabled {
+        background: $GRAY4;
+        box-shadow: 1px 1px 3px 0px #d7dcf8;
+    }
   }

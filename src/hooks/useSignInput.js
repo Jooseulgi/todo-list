@@ -12,8 +12,7 @@ const useSignInput = () => {
         console.log(value);
         if (regex.test(value)) {
             setEmailValid(true);
-        }
-        if (!regex.test(value)) {
+        } else {
             setEmailValid(false);
         }
         setEmail(value);

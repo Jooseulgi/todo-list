@@ -25,3 +25,13 @@ const axiosAuthApi = () => {
 
 export const defaultInstance = axiosApi();
 export const authInstance = axiosAuthApi();
+
+authInstance.interceptors.request.use((config) => {
+    const token = `Bearer ${localStorage.getItem("access_token")}`;
+    if (!config.headers || !token) return config;
+    const headerToken = config.headers.Authorization;
+    if (headerToken === token) return config;
+
+    config.headers.Authorization = token;
+    return config;
+});

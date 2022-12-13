@@ -7,7 +7,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { UpdateTextContext } from "../../context/UpdateTextProvider";
 import Button from "../Common/Button/Button";
 
-const TodoItem = ({ item, onChcked, onDelete }) => {
+const TodoItem = ({ item, onUpdate, onDelete }) => {
     const { update, onUpdateState, id } = useContext(UpdateTextContext);
     return (
         <li>
@@ -18,7 +18,7 @@ const TodoItem = ({ item, onChcked, onDelete }) => {
                     })}
                     htmlFor="checkbox"
                     onClick={() => {
-                        onChcked(item.id, item.todo, !item.isCompleted);
+                        onUpdate(item.id, item.todo, !item.isCompleted);
                         console.log(item);
                     }}
                 >

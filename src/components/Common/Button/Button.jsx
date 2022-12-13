@@ -8,6 +8,7 @@ const Button = memo(
         onClick,
         text,
         submit,
+        disabled,
         round = false,
         roundLg = false,
         icon = false,
@@ -23,6 +24,7 @@ const Button = memo(
                     [styles.tab]: tab,
                 })}
                 onClick={onClick}
+                disabled={disabled}
             >
                 {text}
             </button>

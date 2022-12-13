@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import useSign from "../../data/useSign";
-import useSignInput from "../../data/useSignInput";
+import styles from "./sign.module.scss";
+import useSign from "../../hooks/useSign";
+import useSignInput from "../../hooks/useSignInput";
 import Button from "../Common/Button/Button";
 import Title from "../Common/Title/Title";
-import styles from "./sign.module.scss";
 
 const Sign = ({ title, type }) => {
     const [notAllow, setNotAllow] = useState(true);
@@ -16,7 +16,7 @@ const Sign = ({ title, type }) => {
         pwValid,
         onEmailHandler,
         onPwHandler,
-    } = useSignInput({});
+    } = useSignInput();
     const { onLogin, onSingup } = useSign();
 
     useEffect(() => {
@@ -28,20 +28,21 @@ const Sign = ({ title, type }) => {
     }, [emailValid, pwValid]);
 
     useEffect(() => {
+        setNotAllow(true);
         setEmail("");
         setPw("");
-    }, [type]);
+    }, [setEmail, setPw, type]);
 
     return (
         <div className={styles.sign}>
             <div className={styles.centerBox}>
                 <Title largeTitle>{title}</Title>
                 <div className={styles.form}>
-                    <div className={styles.inputBox}>
+                    <div className={styles.input}>
                         <label>이메일 주소</label>
                         <input
                             type="text"
-                            placeholder="@포함 입력해주세요."
+                            placeholder="ex) wanted@wanted.com"
                             value={email}
                             onChange={onEmailHandler}
                         />
@@ -53,7 +54,7 @@ const Sign = ({ title, type }) => {
                     </div>
                 </div>
                 <div className={styles.form}>
-                    <div className={styles.inputBox}>
+                    <div className={styles.input}>
                         <label>비밀번호</label>
                         <input
                             placeholder="8자이상 입력해주세요."
