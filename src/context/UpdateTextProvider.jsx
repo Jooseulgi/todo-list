@@ -8,7 +8,6 @@ export const UpdateTextProvider = ({ children }) => {
     const onUpdateState = (num) => {
         !id && setUpdate((update) => !update);
         setId(num);
-        console.log(num, id, update);
         if (num !== id) return;
         setUpdate((update) => !update);
         setId(undefined);

@@ -9,11 +9,10 @@ const Sign = ({ title, type }) => {
     const [notAllow, setNotAllow] = useState(true);
     const {
         email,
-        setEmail,
         pw,
-        setPw,
         emailValid,
         pwValid,
+        onTypeChange,
         onEmailHandler,
         onPwHandler,
     } = useSignInput();
@@ -25,13 +24,12 @@ const Sign = ({ title, type }) => {
             return;
         }
         setNotAllow(true);
-    }, [emailValid, pwValid]);
+    }, [email, emailValid, pw, pwValid]);
 
     useEffect(() => {
         setNotAllow(true);
-        setEmail("");
-        setPw("");
-    }, [setEmail, setPw, type]);
+        onTypeChange();
+    }, [type]);
 
     return (
         <div className={styles.sign}>

@@ -5,8 +5,8 @@ import { defaultInstance } from "./useAuth";
 const useSign = () => {
     const navigate = useNavigate();
 
-    const onSingup = (email, pw) => {
-        defaultInstance
+    const onSingup = async (email, pw) => {
+        await defaultInstance
             .post("/auth/signup", {
                 email: email,
                 password: pw,
@@ -27,8 +27,8 @@ const useSign = () => {
             });
     };
 
-    const onLogin = (email, pw) => {
-        defaultInstance
+    const onLogin = async (email, pw) => {
+        await defaultInstance
             .post("/auth/signin", {
                 email: email,
                 password: pw,

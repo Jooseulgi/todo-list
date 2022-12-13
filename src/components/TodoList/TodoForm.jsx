@@ -3,19 +3,11 @@ import styles from "./todoList.module.scss";
 import { UpdateTextContext } from "../../context/UpdateTextProvider";
 import Button from "../Common/Button/Button";
 
-const TodoForm = ({
-    todos,
-    onCreate,
-    onUpdate,
-    title,
-    setTitle,
-    onChangeHandler,
-}) => {
+const TodoForm = ({ onCreate, onUpdate, title, setTitle, onChangeHandler }) => {
     const { update, id, setUpdate, setId } = useContext(UpdateTextContext);
     const onSubmit = (e) => {
         e.preventDefault();
         update ? onUpdate(id, title) : onCreate();
-        console.log(todos);
         setTitle("");
         setUpdate(false);
         setId(undefined);

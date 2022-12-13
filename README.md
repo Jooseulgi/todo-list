@@ -1,15 +1,17 @@
 # wanted-pre-onboarding-frontend
 
-## 설치 및 실행
+## 로컬 서버 구동
 
 ```js
 $ npm install
 $ npm start
 ```
 
+## 배포 링크
+
 <br>
 
-## 베이스 코드 구조
+## 구조
 
 ```
 src

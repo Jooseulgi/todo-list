@@ -9,7 +9,6 @@ const useSignInput = () => {
     const onEmailHandler = (e) => {
         const { value } = e.target;
         const regex = /[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+/;
-        console.log(value);
         if (regex.test(value)) {
             setEmailValid(true);
         } else {
@@ -20,13 +19,19 @@ const useSignInput = () => {
 
     const onPwHandler = (e) => {
         const { value } = e.target;
-        console.log(value);
         if (value.length >= 8) {
             setPwValid(true);
         } else {
             setPwValid(false);
         }
         setPw(value);
+    };
+
+    const onTypeChange = () => {
+        setEmail("");
+        setPw("");
+        setEmailValid(false);
+        setPwValid(false);
     };
 
     return {
@@ -38,6 +43,7 @@ const useSignInput = () => {
         pwValid,
         onEmailHandler,
         onPwHandler,
+        onTypeChange,
     };
 };
 

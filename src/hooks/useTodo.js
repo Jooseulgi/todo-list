@@ -10,8 +10,8 @@ const useTodo = () => {
         setTitle(e.target.value);
     };
 
-    const getTodo = () => {
-        authInstance
+    const getTodo = async () => {
+        await authInstance
             .get("/todos")
             .then((res) => {
                 setTodos(res.data);
@@ -24,13 +24,12 @@ const useTodo = () => {
             });
     };
 
-    const onCreate = () => {
+    const onCreate = async () => {
         if (title.trim().length === 0) return;
-        authInstance
+        await authInstance
             .post("/todos", { todo: title })
             .then((res) => {
                 setTodos(todos.concat(res.data));
-                console.log(todos, res.data);
             })
             .catch((error) => {
                 if (error instanceof AxiosError) {
@@ -40,8 +39,8 @@ const useTodo = () => {
             });
     };
 
-    const onDelete = (id) => {
-        authInstance
+    const onDelete = async (id) => {
+        await authInstance
             .delete(`/todos/${id}`)
             .then(() => {
                 setTodos(todos.filter((item) => item.id !== id));
@@ -64,16 +63,14 @@ const useTodo = () => {
         return isCompleted;
     };
 
-    const onUpdate = (
+    const onUpdate = async (
         id,
         editTitle,
         isCompleted = getDefaultIsCompleted(id)
     ) => {
-        console.log(id, isCompleted);
-        authInstance
+        await authInstance
             .put(`/todos/${id}`, { todo: editTitle, isCompleted })
             .then((res) => {
-                console.log(isCompleted);
                 setTodos(
                     todos.map((item) =>
                         item.id === res.data.id ? res.data : item

@@ -24,7 +24,7 @@ const TodoLayout = () => {
 
     useEffect(() => {
         getTodo();
-    }, [getTodo]);
+    }, []);
 
     return (
         <UpdateTextProvider>

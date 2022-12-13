@@ -19,7 +19,6 @@ const TodoItem = ({ item, onUpdate, onDelete }) => {
                     htmlFor="checkbox"
                     onClick={() => {
                         onUpdate(item.id, item.todo, !item.isCompleted);
-                        console.log(item);
                     }}
                 >
                     {item.todo}
