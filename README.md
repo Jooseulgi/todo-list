@@ -105,7 +105,8 @@ $ npm start
 
 ## 사용 기술
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![context API](https://img.shields.io/badge/context%20API-333333?style=for-the-badge&logo=&logoColor=white) ![Scss](https://img.shields.io/badge/Styled%20components-CC6699?style=for-the-badge&logo=Sass&logoColor=white) <br/>
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![context API](https://img.shields.io/badge/context%20API-333333?style=for-the-badge&logo=&logoColor=white) ![Scss](https://img.shields.io/badge/Styled%20components-CC6699?style=for-the-badge&logo=Sass&logoColor=white) <br/>
 
 -   <b>Axios</b>
     -   fetch와 비교해 서버로부터 데이터를 받은 후, json으로 변환할 필요가 없는 장점이 있다.
@@ -140,5 +141,5 @@ todo-list
 ├─ ⚙️ .gitignore
 ├─ ⚙️ package-lock.json
 ├─ ⚙️ package.json
-└─   README.md
+└─  README.md
 ```
